@@ -2,14 +2,11 @@ const express = require("express");
 const logs = express.Router()
 const logArray = require("../models/log.js")
 
-logs.use(express.json())
 
-logs.post("/", (req, res, next) => {
-	const newLog= req.body
-	console.log(req.body);
-	logsArray.push(newLog);
-	res.status(200).send(JSON.stringify(req.body))
-})
+logs.post("/", (req, res) => {
+	logArray.push(req.body);
+	res.status(303).json(logArray);
+});
 
 logs.get("/", (req, res) => {
 	res.json(logArray)
